@@ -1,3 +1,4 @@
+<%= form_with url: charges_path do |f| %>
 <div class="padding">
   <div class="row">
     <div class="col-sm-6">
@@ -10,8 +11,8 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
-                <label for="name">Amount</label>
-                <input class="form-control" min="0" id="name" type="number" placeholder="Enter your amount">
+                <label for="amount">Amount</label>
+                <%= f.number_field :amount, class: 'form-control', id: 'amount', min: 0, placeholder: 'Enter your amount in $' %>
               </div>
             </div>
           </div>
@@ -21,7 +22,7 @@
               <div class="form-group">
                 <label for="ccnumber">Credit Card Number</label>
                 <div class="input-group">
-                  <input class="form-control" id="cardNumber" type="text" placeholder="0000 0000 0000 0000" autocomplete="email">
+                  <%= f.text_field :card_number, class: 'form-control', id: 'cardNumber', placeholder: '0000 0000 0000 0000' %>
                   <div class="input-group-append">
                     <span class="input-group-text">
                       <i class="mdi mdi-credit-card"></i>
@@ -35,29 +36,30 @@
           <div class="row">
             <div class="form-group col-sm-4">
               <label for="ccmonth">Month</label>
-              <input class="form-control" id="ccmonth" type="text" placeholder="MM">
+              <%= f.text_field :month, class: 'form-control', id: 'ccmonth', placeholder: 'MM' %>
             </div>
             <div class="form-group col-sm-4">
               <label for="ccyear">Year</label>
-              <input class="form-control" id="ccyear" type="text" placeholder="YY">
+              <%= f.text_field :year, class: 'form-control', id: 'ccyear', placeholder: 'YY' %>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="cvv">CVV/CVC</label>
-                <input class="form-control" id="cvv" type="text" placeholder="123">
+                <%= f.text_field :cvc, class: 'form-control', id: 'cvv', placeholder: '123' %>
               </div>
             </div>
           </div>
         </div>
         <div class="card-footer">
-          <button class="btn btn-sm btn-success float-right" type="submit">
+          <%= button_to charges_path, class: 'btn btn-sm btn-success float-right' do %>
             <i class="mdi mdi-gamepad-circle"></i> Continue
-          </button>
-          <button class="btn btn-sm btn-danger" type="reset">
+          <% end %>
+          <%= link_to root_path, class: 'btn btn-sm btn-danger' do %>
             <i class="mdi mdi-lock-reset"></i> Reset
-          </button>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<% end %>

@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "application#stripe_payment"
+  resources :charges, only: :create
   get :stripe_payment, to: 'application#stripe_payment'
 end
