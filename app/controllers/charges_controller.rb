@@ -3,7 +3,8 @@ class ChargesController < ApplicationController
   before_action :set_params
 
   def create
-    charge = Stripe::Charge.create(amount: (@amount * 100), source: stripe_token.id, currency: 'usd')
+    charge = Stripe::Charge.create(amount: (@amount * 100), source: 'tok_visa', currency: 'usd')
+    # charge = Stripe::Charge.create(amount: (@amount * 100), source: stripe_token.id, currency: 'usd')
     flash[:notice] = charge[:paid] == true ? success_message(charge) : failure_message
     redirect_back fallback_location: root_path
   end
